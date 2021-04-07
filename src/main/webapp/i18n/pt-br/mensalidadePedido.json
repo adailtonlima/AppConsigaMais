@@ -1,0 +1,29 @@
+{
+  "appConsigaMaisApp": {
+    "mensalidadePedido": {
+      "home": {
+        "title": "Mensalidade Pedidos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Mensalidade Pedido",
+        "createOrEditLabel": "Criar ou editar Mensalidade Pedido",
+        "notFound": "Nenhum Mensalidade Pedido encontrado"
+      },
+      "created": "Um novo Mensalidade Pedido foi criado com o identificador {{ param }}",
+      "updated": "Um Mensalidade Pedido foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Mensalidade Pedido foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Mensalidade Pedido {{ id }}?"
+      },
+      "detail": {
+        "title": "Mensalidade Pedido"
+      },
+      "id": "ID",
+      "nParcela": "N Parcela",
+      "valor": "Valor",
+      "criado": "Criado",
+      "valorParcial": "Valor Parcial",
+      "pedido": "Pedido",
+      "fatura": "Fatura"
+    }
+  }
+}

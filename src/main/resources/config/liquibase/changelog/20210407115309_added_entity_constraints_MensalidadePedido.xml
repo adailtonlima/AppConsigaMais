@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity MensalidadePedido.
+    -->
+    <changeSet id="20210407115309-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="pedido_id"
+                                 baseTableName="mensalidade_pedido"
+                                 constraintName="fk_mensalidade_pedido__pedido_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pedido"/>
+
+        <addForeignKeyConstraint baseColumnNames="fatura_id"
+                                 baseTableName="mensalidade_pedido"
+                                 constraintName="fk_mensalidade_pedido__fatura_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fatura_mensal"/>
+    </changeSet>
+</databaseChangeLog>

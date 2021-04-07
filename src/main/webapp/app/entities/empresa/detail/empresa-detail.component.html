@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="empresa">
+      <h2 data-cy="empresaDetailsHeading"><span jhiTranslate="appConsigaMaisApp.empresa.detail.title">Empresa</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ empresa.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.empresa.nome">Nome</span></dt>
+        <dd>
+          <span>{{ empresa.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.empresa.cnpj">Cnpj</span></dt>
+        <dd>
+          <span>{{ empresa.cnpj }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.empresa.razaoSocial">Razao Social</span></dt>
+        <dd>
+          <span>{{ empresa.razaoSocial }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.empresa.administradores">Administradores</span></dt>
+        <dd>
+          <span *ngFor="let administradores of empresa.administradores; let last = last">
+            <a [routerLink]="['/administrador', administradores?.id, 'view']">{{ administradores.nome }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/empresa', empresa.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

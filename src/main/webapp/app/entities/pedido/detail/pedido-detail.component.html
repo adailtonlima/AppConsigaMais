@@ -1,0 +1,100 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pedido">
+      <h2 data-cy="pedidoDetailsHeading"><span jhiTranslate="appConsigaMaisApp.pedido.detail.title">Pedido</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ pedido.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.estado">Estado</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'appConsigaMaisApp.StatusPedido.' + pedido.estado }}">{{ pedido.estado }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.criado">Criado</span></dt>
+        <dd>
+          <span>{{ pedido.criado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.dataAprovacao">Data Aprovacao</span></dt>
+        <dd>
+          <span>{{ pedido.dataAprovacao | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.dataExpiracao">Data Expiracao</span></dt>
+        <dd>
+          <span>{{ pedido.dataExpiracao | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.renda">Renda</span></dt>
+        <dd>
+          <span>{{ pedido.renda }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.valorSolicitado">Valor Solicitado</span></dt>
+        <dd>
+          <span>{{ pedido.valorSolicitado }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.qtParcelasSolicitado">Qt Parcelas Solicitado</span></dt>
+        <dd>
+          <span>{{ pedido.qtParcelasSolicitado }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.valorAprovado">Valor Aprovado</span></dt>
+        <dd>
+          <span>{{ pedido.valorAprovado }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.valorParcelaAprovado">Valor Parcela Aprovado</span></dt>
+        <dd>
+          <span>{{ pedido.valorParcelaAprovado }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.qtParcelasAprovado">Qt Parcelas Aprovado</span></dt>
+        <dd>
+          <span>{{ pedido.qtParcelasAprovado }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.dataPrimeiroVencimento">Data Primeiro Vencimento</span></dt>
+        <dd>
+          <span>{{ pedido.dataPrimeiroVencimento | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.dataUltimoVencimento">Data Ultimo Vencimento</span></dt>
+        <dd>
+          <span>{{ pedido.dataUltimoVencimento | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.funcionario">Funcionario</span></dt>
+        <dd>
+          <div *ngIf="pedido.funcionario">
+            <a [routerLink]="['/funcionario', pedido.funcionario?.id, 'view']">{{ pedido.funcionario?.cpf }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.empresa">Empresa</span></dt>
+        <dd>
+          <div *ngIf="pedido.empresa">
+            <a [routerLink]="['/empresa', pedido.empresa?.id, 'view']">{{ pedido.empresa?.cpf }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.filia">Filia</span></dt>
+        <dd>
+          <div *ngIf="pedido.filia">
+            <a [routerLink]="['/filial', pedido.filia?.id, 'view']">{{ pedido.filia?.cpf }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.pedido.quemAprovou">Quem Aprovou</span></dt>
+        <dd>
+          <div *ngIf="pedido.quemAprovou">
+            <a [routerLink]="['/administrador', pedido.quemAprovou?.id, 'view']">{{ pedido.quemAprovou?.nome }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pedido', pedido.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

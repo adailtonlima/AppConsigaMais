@@ -48,6 +48,21 @@ public class CacheConfiguration {
             createCache(cm, br.com.consiga.domain.User.class.getName());
             createCache(cm, br.com.consiga.domain.Authority.class.getName());
             createCache(cm, br.com.consiga.domain.User.class.getName() + ".authorities");
+            createCache(cm, br.com.consiga.domain.Estado.class.getName());
+            createCache(cm, br.com.consiga.domain.Cidade.class.getName());
+            createCache(cm, br.com.consiga.domain.Endereco.class.getName());
+            createCache(cm, br.com.consiga.domain.ArquivoImportacao.class.getName());
+            createCache(cm, br.com.consiga.domain.Empresa.class.getName());
+            createCache(cm, br.com.consiga.domain.Empresa.class.getName() + ".administradores");
+            createCache(cm, br.com.consiga.domain.Filial.class.getName());
+            createCache(cm, br.com.consiga.domain.Filial.class.getName() + ".administradores");
+            createCache(cm, br.com.consiga.domain.Funcionario.class.getName());
+            createCache(cm, br.com.consiga.domain.Administrador.class.getName());
+            createCache(cm, br.com.consiga.domain.Administrador.class.getName() + ".empresas");
+            createCache(cm, br.com.consiga.domain.Administrador.class.getName() + ".filiais");
+            createCache(cm, br.com.consiga.domain.Pedido.class.getName());
+            createCache(cm, br.com.consiga.domain.MensalidadePedido.class.getName());
+            createCache(cm, br.com.consiga.domain.FaturaMensal.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

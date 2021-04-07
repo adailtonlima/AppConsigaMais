@@ -1,0 +1,39 @@
+{
+  "appConsigaMaisApp": {
+    "pedido": {
+      "home": {
+        "title": "Pedidos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Pedido",
+        "createOrEditLabel": "Criar ou editar Pedido",
+        "notFound": "Nenhum Pedido encontrado"
+      },
+      "created": "Um novo Pedido foi criado com o identificador {{ param }}",
+      "updated": "Um Pedido foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Pedido foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Pedido {{ id }}?"
+      },
+      "detail": {
+        "title": "Pedido"
+      },
+      "id": "ID",
+      "estado": "Estado",
+      "criado": "Criado",
+      "dataAprovacao": "Data Aprovacao",
+      "dataExpiracao": "Data Expiracao",
+      "renda": "Renda",
+      "valorSolicitado": "Valor Solicitado",
+      "qtParcelasSolicitado": "Qt Parcelas Solicitado",
+      "valorAprovado": "Valor Aprovado",
+      "valorParcelaAprovado": "Valor Parcela Aprovado",
+      "qtParcelasAprovado": "Qt Parcelas Aprovado",
+      "dataPrimeiroVencimento": "Data Primeiro Vencimento",
+      "dataUltimoVencimento": "Data Ultimo Vencimento",
+      "funcionario": "Funcionario",
+      "empresa": "Empresa",
+      "filia": "Filia",
+      "quemAprovou": "Quem Aprovou"
+    }
+  }
+}

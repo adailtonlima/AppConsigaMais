@@ -1,0 +1,38 @@
+{
+  "name": "Funcionario",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "cpf",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "criado",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "atualizado",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "ultimoLogin",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "funcionario",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210407115306"
+}

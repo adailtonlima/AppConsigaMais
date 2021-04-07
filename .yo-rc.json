@@ -42,7 +42,21 @@
     "jwtSecretKey": "NTNiMmE1YTNlN2ExMDhkY2NkYzkyNmQzNTViMTNiZmYxZmM1NGM1ZTc5ZDdhMGYwMDAyYTNhZjFjOWMzOGRhZmM2NzgzOWM3MmZmNTk1ZWIyNmNjNTI2NzI5NWQ3YmFkY2NhN2RiMWM1MTQwOGNjYjA5N2I5OGExZjM1YjFkZDQ=",
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "reactive": false
+    "reactive": false,
+    "entities": [
+      "Estado",
+      "Cidade",
+      "Endereco",
+      "ArquivoImportacao",
+      "Empresa",
+      "Filial",
+      "Funcionario",
+      "Administrador",
+      "Pedido",
+      "MensalidadePedido",
+      "FaturaMensal"
+    ],
+    "lastLiquibaseTimestamp": 1617796390000
   },
   "git-provider": "GitHub",
   "git-company": "adailtonlima",

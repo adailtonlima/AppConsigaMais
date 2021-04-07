@@ -15,7 +15,26 @@
     <property name="datetimeType" value="datetime" dbms="oracle, mssql, postgresql, h2"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115300_added_entity_Estado.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115301_added_entity_Cidade.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115302_added_entity_Endereco.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115303_added_entity_ArquivoImportacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115304_added_entity_Empresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115305_added_entity_Filial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115306_added_entity_Funcionario.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115307_added_entity_Administrador.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115308_added_entity_Pedido.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115309_added_entity_MensalidadePedido.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115310_added_entity_FaturaMensal.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20210407115301_added_entity_constraints_Cidade.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115302_added_entity_constraints_Endereco.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115303_added_entity_constraints_ArquivoImportacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115304_added_entity_constraints_Empresa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115305_added_entity_constraints_Filial.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115308_added_entity_constraints_Pedido.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115309_added_entity_constraints_MensalidadePedido.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210407115310_added_entity_constraints_FaturaMensal.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

@@ -1,0 +1,150 @@
+<div>
+  <h2 id="page-heading" data-cy="EnderecoHeading">
+    <span jhiTranslate="appConsigaMaisApp.endereco.home.title">Enderecos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="appConsigaMaisApp.endereco.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-endereco"
+        [routerLink]="['/endereco/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="appConsigaMaisApp.endereco.home.createLabel"> Create a new Endereco </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="enderecos?.length === 0">
+    <span jhiTranslate="appConsigaMaisApp.endereco.home.notFound">No enderecos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="enderecos && enderecos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nome">
+            <span jhiTranslate="appConsigaMaisApp.endereco.nome">Nome</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="cep">
+            <span jhiTranslate="appConsigaMaisApp.endereco.cep">Cep</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="logradouro">
+            <span jhiTranslate="appConsigaMaisApp.endereco.logradouro">Logradouro</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="numero">
+            <span jhiTranslate="appConsigaMaisApp.endereco.numero">Numero</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="referencia">
+            <span jhiTranslate="appConsigaMaisApp.endereco.referencia">Referencia</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="bairro">
+            <span jhiTranslate="appConsigaMaisApp.endereco.bairro">Bairro</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="cidade.nome">
+            <span jhiTranslate="appConsigaMaisApp.endereco.cidade">Cidade</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="empresa.nome">
+            <span jhiTranslate="appConsigaMaisApp.endereco.empresa">Empresa</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="filial.nome">
+            <span jhiTranslate="appConsigaMaisApp.endereco.filial">Filial</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="funcionario.nome">
+            <span jhiTranslate="appConsigaMaisApp.endereco.funcionario">Funcionario</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let endereco of enderecos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/endereco', endereco.id, 'view']">{{ endereco.id }}</a>
+          </td>
+          <td>{{ endereco.nome }}</td>
+          <td>{{ endereco.cep }}</td>
+          <td>{{ endereco.logradouro }}</td>
+          <td>{{ endereco.numero }}</td>
+          <td>{{ endereco.referencia }}</td>
+          <td>{{ endereco.bairro }}</td>
+          <td>
+            <div *ngIf="endereco.cidade">
+              <a [routerLink]="['/cidade', endereco.cidade?.id, 'view']">{{ endereco.cidade?.nome }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="endereco.empresa">
+              <a [routerLink]="['/empresa', endereco.empresa?.id, 'view']">{{ endereco.empresa?.nome }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="endereco.filial">
+              <a [routerLink]="['/filial', endereco.filial?.id, 'view']">{{ endereco.filial?.nome }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="endereco.funcionario">
+              <a [routerLink]="['/funcionario', endereco.funcionario?.id, 'view']">{{ endereco.funcionario?.nome }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/endereco', endereco.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/endereco', endereco.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(endereco)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="enderecos && enderecos.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

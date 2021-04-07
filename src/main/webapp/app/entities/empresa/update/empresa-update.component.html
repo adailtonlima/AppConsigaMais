@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-empresa-heading" data-cy="EmpresaCreateUpdateHeading" jhiTranslate="appConsigaMaisApp.empresa.home.createOrEditLabel">
+        Create or edit a Empresa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.empresa.nome" for="field_nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+          <div *ngIf="editForm.get('nome')!.invalid && (editForm.get('nome')!.dirty || editForm.get('nome')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nome')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.empresa.cnpj" for="field_cnpj">Cnpj</label>
+          <input type="text" class="form-control" name="cnpj" id="field_cnpj" data-cy="cnpj" formControlName="cnpj" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.empresa.razaoSocial" for="field_razaoSocial"
+            >Razao Social</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="razaoSocial"
+            id="field_razaoSocial"
+            data-cy="razaoSocial"
+            formControlName="razaoSocial"
+          />
+        </div>
+
+        <div class="form-group">
+          <label jhiTranslate="appConsigaMaisApp.empresa.administradores" for="field_administradores">Administradores</label>
+          <select
+            class="form-control"
+            id="field_administradores"
+            data-cy="administradores"
+            multiple
+            name="administradores"
+            formControlName="administradores"
+          >
+            <option
+              [ngValue]="getSelectedAdministrador(administradorOption, editForm.get('administradores')!.value)"
+              *ngFor="let administradorOption of administradorsSharedCollection; trackBy: trackAdministradorById"
+            >
+              {{ administradorOption.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,165 @@
+<div>
+  <h2 id="page-heading" data-cy="PedidoHeading">
+    <span jhiTranslate="appConsigaMaisApp.pedido.home.title">Pedidos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="appConsigaMaisApp.pedido.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pedido"
+        [routerLink]="['/pedido/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="appConsigaMaisApp.pedido.home.createLabel"> Create a new Pedido </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="pedidos?.length === 0">
+    <span jhiTranslate="appConsigaMaisApp.pedido.home.notFound">No pedidos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="pedidos && pedidos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="estado">
+            <span jhiTranslate="appConsigaMaisApp.pedido.estado">Estado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="criado">
+            <span jhiTranslate="appConsigaMaisApp.pedido.criado">Criado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dataAprovacao">
+            <span jhiTranslate="appConsigaMaisApp.pedido.dataAprovacao">Data Aprovacao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dataExpiracao">
+            <span jhiTranslate="appConsigaMaisApp.pedido.dataExpiracao">Data Expiracao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="renda">
+            <span jhiTranslate="appConsigaMaisApp.pedido.renda">Renda</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="valorSolicitado">
+            <span jhiTranslate="appConsigaMaisApp.pedido.valorSolicitado">Valor Solicitado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="qtParcelasSolicitado">
+            <span jhiTranslate="appConsigaMaisApp.pedido.qtParcelasSolicitado">Qt Parcelas Solicitado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="valorAprovado">
+            <span jhiTranslate="appConsigaMaisApp.pedido.valorAprovado">Valor Aprovado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="valorParcelaAprovado">
+            <span jhiTranslate="appConsigaMaisApp.pedido.valorParcelaAprovado">Valor Parcela Aprovado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="qtParcelasAprovado">
+            <span jhiTranslate="appConsigaMaisApp.pedido.qtParcelasAprovado">Qt Parcelas Aprovado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dataPrimeiroVencimento">
+            <span jhiTranslate="appConsigaMaisApp.pedido.dataPrimeiroVencimento">Data Primeiro Vencimento</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dataUltimoVencimento">
+            <span jhiTranslate="appConsigaMaisApp.pedido.dataUltimoVencimento">Data Ultimo Vencimento</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="funcionario.cpf">
+            <span jhiTranslate="appConsigaMaisApp.pedido.funcionario">Funcionario</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="empresa.cpf">
+            <span jhiTranslate="appConsigaMaisApp.pedido.empresa">Empresa</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="filia.cpf">
+            <span jhiTranslate="appConsigaMaisApp.pedido.filia">Filia</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="quemAprovou.nome">
+            <span jhiTranslate="appConsigaMaisApp.pedido.quemAprovou">Quem Aprovou</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedido of pedidos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/pedido', pedido.id, 'view']">{{ pedido.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'appConsigaMaisApp.StatusPedido.' + pedido.estado }}">{{ pedido.estado }}</td>
+          <td>{{ pedido.criado | formatMediumDatetime }}</td>
+          <td>{{ pedido.dataAprovacao | formatMediumDatetime }}</td>
+          <td>{{ pedido.dataExpiracao | formatMediumDate }}</td>
+          <td>{{ pedido.renda }}</td>
+          <td>{{ pedido.valorSolicitado }}</td>
+          <td>{{ pedido.qtParcelasSolicitado }}</td>
+          <td>{{ pedido.valorAprovado }}</td>
+          <td>{{ pedido.valorParcelaAprovado }}</td>
+          <td>{{ pedido.qtParcelasAprovado }}</td>
+          <td>{{ pedido.dataPrimeiroVencimento | formatMediumDate }}</td>
+          <td>{{ pedido.dataUltimoVencimento | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="pedido.funcionario">
+              <a [routerLink]="['/funcionario', pedido.funcionario?.id, 'view']">{{ pedido.funcionario?.cpf }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="pedido.empresa">
+              <a [routerLink]="['/empresa', pedido.empresa?.id, 'view']">{{ pedido.empresa?.cpf }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="pedido.filia">
+              <a [routerLink]="['/filial', pedido.filia?.id, 'view']">{{ pedido.filia?.cpf }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="pedido.quemAprovou">
+              <a [routerLink]="['/administrador', pedido.quemAprovou?.id, 'view']">{{ pedido.quemAprovou?.nome }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/pedido', pedido.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/pedido', pedido.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(pedido)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="pedidos && pedidos.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+{
+  "name": "Pedido",
+  "fields": [
+    {
+      "fieldName": "estado",
+      "fieldType": "StatusPedido",
+      "fieldValues": "PENDENTE,APROVADO,PARC_APROVADO,REPROVADO,EXPIRADO,CANCELADO,ESTORNADO"
+    },
+    {
+      "fieldName": "criado",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "dataAprovacao",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "dataExpiracao",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "renda",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorSolicitado",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "qtParcelasSolicitado",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "valorAprovado",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorParcelaAprovado",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "qtParcelasAprovado",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dataPrimeiroVencimento",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dataUltimoVencimento",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "funcionario",
+      "otherEntityRelationshipName": "pedido",
+      "relationshipName": "funcionario",
+      "otherEntityField": "cpf"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "empresa",
+      "otherEntityRelationshipName": "pedido",
+      "relationshipName": "empresa",
+      "otherEntityField": "cpf"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "filial",
+      "otherEntityRelationshipName": "pedido",
+      "relationshipName": "filia",
+      "otherEntityField": "cpf"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "administrador",
+      "otherEntityRelationshipName": "pedido",
+      "relationshipName": "quemAprovou",
+      "otherEntityField": "nome"
+    }
+  ],
+  "entityTableName": "pedido",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210407115308"
+}

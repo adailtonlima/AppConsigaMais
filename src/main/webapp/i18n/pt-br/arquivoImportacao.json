@@ -1,0 +1,31 @@
+{
+  "appConsigaMaisApp": {
+    "arquivoImportacao": {
+      "home": {
+        "title": "Arquivo Importacaos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Arquivo Importacao",
+        "createOrEditLabel": "Criar ou editar Arquivo Importacao",
+        "notFound": "Nenhum Arquivo Importacao encontrado"
+      },
+      "created": "Um novo Arquivo Importacao foi criado com o identificador {{ param }}",
+      "updated": "Um Arquivo Importacao foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Arquivo Importacao foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Arquivo Importacao {{ id }}?"
+      },
+      "detail": {
+        "title": "Arquivo Importacao"
+      },
+      "id": "ID",
+      "urlArquivo": "Url Arquivo",
+      "urlCriticas": "Url Criticas",
+      "criado": "Criado",
+      "estado": "Estado",
+      "processado": "Processado",
+      "criador": "Criador",
+      "empresa": "Empresa",
+      "filial": "Filial"
+    }
+  }
+}

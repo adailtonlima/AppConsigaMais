@@ -1,0 +1,29 @@
+{
+  "appConsigaMaisApp": {
+    "faturaMensal": {
+      "home": {
+        "title": "Fatura Mensals",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Fatura Mensal",
+        "createOrEditLabel": "Criar ou editar Fatura Mensal",
+        "notFound": "Nenhum Fatura Mensal encontrado"
+      },
+      "created": "Um novo Fatura Mensal foi criado com o identificador {{ param }}",
+      "updated": "Um Fatura Mensal foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Fatura Mensal foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Fatura Mensal {{ id }}?"
+      },
+      "detail": {
+        "title": "Fatura Mensal"
+      },
+      "id": "ID",
+      "mes": "Mes",
+      "criado": "Criado",
+      "boletoUrl": "Boleto Url",
+      "dataPago": "Data Pago",
+      "empresa": "Empresa",
+      "filial": "Filial"
+    }
+  }
+}

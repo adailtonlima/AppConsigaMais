@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="administrador">
+      <h2 data-cy="administradorDetailsHeading"><span jhiTranslate="appConsigaMaisApp.administrador.detail.title">Administrador</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ administrador.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.administrador.nome">Nome</span></dt>
+        <dd>
+          <span>{{ administrador.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.administrador.criado">Criado</span></dt>
+        <dd>
+          <span>{{ administrador.criado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.administrador.atualizado">Atualizado</span></dt>
+        <dd>
+          <span>{{ administrador.atualizado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.administrador.ultimoLogin">Ultimo Login</span></dt>
+        <dd>
+          <span>{{ administrador.ultimoLogin | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/administrador', administrador.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

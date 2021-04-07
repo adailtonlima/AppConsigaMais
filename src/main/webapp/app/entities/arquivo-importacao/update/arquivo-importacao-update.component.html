@@ -1,0 +1,151 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-arquivo-importacao-heading"
+        data-cy="ArquivoImportacaoCreateUpdateHeading"
+        jhiTranslate="appConsigaMaisApp.arquivoImportacao.home.createOrEditLabel"
+      >
+        Create or edit a Arquivo Importacao
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.arquivoImportacao.urlArquivo" for="field_urlArquivo"
+            >Url Arquivo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="urlArquivo"
+            id="field_urlArquivo"
+            data-cy="urlArquivo"
+            formControlName="urlArquivo"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.arquivoImportacao.urlCriticas" for="field_urlCriticas"
+            >Url Criticas</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="urlCriticas"
+            id="field_urlCriticas"
+            data-cy="urlCriticas"
+            formControlName="urlCriticas"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.arquivoImportacao.criado" for="field_criado">Criado</label>
+          <div class="d-flex">
+            <input
+              id="field_criado"
+              data-cy="criado"
+              type="datetime-local"
+              class="form-control"
+              name="criado"
+              formControlName="criado"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.arquivoImportacao.estado" for="field_estado">Estado</label>
+          <select class="form-control" name="estado" formControlName="estado" id="field_estado" data-cy="estado">
+            <option [ngValue]="null">{{ 'appConsigaMaisApp.StatusArquivo.null' | translate }}</option>
+            <option value="ENVIADO">{{ 'appConsigaMaisApp.StatusArquivo.ENVIADO' | translate }}</option>
+            <option value="PROCESSANDO">{{ 'appConsigaMaisApp.StatusArquivo.PROCESSANDO' | translate }}</option>
+            <option value="PROCESSADO">{{ 'appConsigaMaisApp.StatusArquivo.PROCESSADO' | translate }}</option>
+            <option value="PROCESSO_RESSALVA">{{ 'appConsigaMaisApp.StatusArquivo.PROCESSO_RESSALVA' | translate }}</option>
+            <option value="ERRO">{{ 'appConsigaMaisApp.StatusArquivo.ERRO' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.arquivoImportacao.processado" for="field_processado"
+            >Processado</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_processado"
+              data-cy="processado"
+              type="datetime-local"
+              class="form-control"
+              name="processado"
+              formControlName="processado"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.arquivoImportacao.criador" for="field_criador">Criador</label>
+          <select class="form-control" id="field_criador" data-cy="criador" name="criador" formControlName="criador">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                administradorOption.id === editForm.get('criador')!.value?.id ? editForm.get('criador')!.value : administradorOption
+              "
+              *ngFor="let administradorOption of administradorsSharedCollection; trackBy: trackAdministradorById"
+            >
+              {{ administradorOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.arquivoImportacao.empresa" for="field_empresa">Empresa</label>
+          <select class="form-control" id="field_empresa" data-cy="empresa" name="empresa" formControlName="empresa">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="empresaOption.id === editForm.get('empresa')!.value?.id ? editForm.get('empresa')!.value : empresaOption"
+              *ngFor="let empresaOption of empresasSharedCollection; trackBy: trackEmpresaById"
+            >
+              {{ empresaOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.arquivoImportacao.filial" for="field_filial">Filial</label>
+          <select class="form-control" id="field_filial" data-cy="filial" name="filial" formControlName="filial">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="filialOption.id === editForm.get('filial')!.value?.id ? editForm.get('filial')!.value : filialOption"
+              *ngFor="let filialOption of filialsSharedCollection; trackBy: trackFilialById"
+            >
+              {{ filialOption.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-mensalidade-pedido-heading"
+        data-cy="MensalidadePedidoCreateUpdateHeading"
+        jhiTranslate="appConsigaMaisApp.mensalidadePedido.home.createOrEditLabel"
+      >
+        Create or edit a Mensalidade Pedido
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.mensalidadePedido.nParcela" for="field_nParcela"
+            >N Parcela</label
+          >
+          <input type="number" class="form-control" name="nParcela" id="field_nParcela" data-cy="nParcela" formControlName="nParcela" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.mensalidadePedido.valor" for="field_valor">Valor</label>
+          <input type="number" class="form-control" name="valor" id="field_valor" data-cy="valor" formControlName="valor" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.mensalidadePedido.criado" for="field_criado">Criado</label>
+          <div class="d-flex">
+            <input
+              id="field_criado"
+              data-cy="criado"
+              type="datetime-local"
+              class="form-control"
+              name="criado"
+              formControlName="criado"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.mensalidadePedido.valorParcial" for="field_valorParcial"
+            >Valor Parcial</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorParcial"
+            id="field_valorParcial"
+            data-cy="valorParcial"
+            formControlName="valorParcial"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.mensalidadePedido.pedido" for="field_pedido">Pedido</label>
+          <select class="form-control" id="field_pedido" data-cy="pedido" name="pedido" formControlName="pedido">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="pedidoOption.id === editForm.get('pedido')!.value?.id ? editForm.get('pedido')!.value : pedidoOption"
+              *ngFor="let pedidoOption of pedidosSharedCollection; trackBy: trackPedidoById"
+            >
+              {{ pedidoOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.mensalidadePedido.fatura" for="field_fatura">Fatura</label>
+          <select class="form-control" id="field_fatura" data-cy="fatura" name="fatura" formControlName="fatura">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="faturaMensalOption.id === editForm.get('fatura')!.value?.id ? editForm.get('fatura')!.value : faturaMensalOption"
+              *ngFor="let faturaMensalOption of faturaMensalsSharedCollection; trackBy: trackFaturaMensalById"
+            >
+              {{ faturaMensalOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
