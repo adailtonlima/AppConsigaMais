@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="mensalidadePedido">
+      <h2 data-cy="mensalidadePedidoDetailsHeading">
+        <span jhiTranslate="appConsigaMaisApp.mensalidadePedido.detail.title">Mensalidade Pedido</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ mensalidadePedido.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.mensalidadePedido.nParcela">N Parcela</span></dt>
+        <dd>
+          <span>{{ mensalidadePedido.nParcela }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.mensalidadePedido.valor">Valor</span></dt>
+        <dd>
+          <span>{{ mensalidadePedido.valor }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.mensalidadePedido.criado">Criado</span></dt>
+        <dd>
+          <span>{{ mensalidadePedido.criado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.mensalidadePedido.valorParcial">Valor Parcial</span></dt>
+        <dd>
+          <span>{{ mensalidadePedido.valorParcial }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.mensalidadePedido.pedido">Pedido</span></dt>
+        <dd>
+          <div *ngIf="mensalidadePedido.pedido">
+            <a [routerLink]="['/pedido', mensalidadePedido.pedido?.id, 'view']">{{ mensalidadePedido.pedido?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.mensalidadePedido.fatura">Fatura</span></dt>
+        <dd>
+          <div *ngIf="mensalidadePedido.fatura">
+            <a [routerLink]="['/fatura-mensal', mensalidadePedido.fatura?.id, 'view']">{{ mensalidadePedido.fatura?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mensalidade-pedido', mensalidadePedido.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

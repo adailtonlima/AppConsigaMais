@@ -1,0 +1,45 @@
+{
+  "name": "MensalidadePedido",
+  "fields": [
+    {
+      "fieldName": "nParcela",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "criado",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "valorParcial",
+      "fieldType": "Double"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "pedido",
+      "otherEntityRelationshipName": "mensalidadePedido",
+      "relationshipName": "pedido"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "faturaMensal",
+      "otherEntityRelationshipName": "mensalidadePedido",
+      "relationshipName": "fatura"
+    }
+  ],
+  "entityTableName": "mensalidade_pedido",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210407115309"
+}

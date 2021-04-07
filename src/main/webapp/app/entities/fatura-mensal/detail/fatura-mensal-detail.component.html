@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="faturaMensal">
+      <h2 data-cy="faturaMensalDetailsHeading"><span jhiTranslate="appConsigaMaisApp.faturaMensal.detail.title">Fatura Mensal</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ faturaMensal.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.faturaMensal.mes">Mes</span></dt>
+        <dd>
+          <span>{{ faturaMensal.mes | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.faturaMensal.criado">Criado</span></dt>
+        <dd>
+          <span>{{ faturaMensal.criado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.faturaMensal.boletoUrl">Boleto Url</span></dt>
+        <dd>
+          <span>{{ faturaMensal.boletoUrl }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.faturaMensal.dataPago">Data Pago</span></dt>
+        <dd>
+          <span>{{ faturaMensal.dataPago | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.faturaMensal.empresa">Empresa</span></dt>
+        <dd>
+          <div *ngIf="faturaMensal.empresa">
+            <a [routerLink]="['/empresa', faturaMensal.empresa?.id, 'view']">{{ faturaMensal.empresa?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.faturaMensal.filial">Filial</span></dt>
+        <dd>
+          <div *ngIf="faturaMensal.filial">
+            <a [routerLink]="['/filial', faturaMensal.filial?.id, 'view']">{{ faturaMensal.filial?.nome }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/fatura-mensal', faturaMensal.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

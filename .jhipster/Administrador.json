@@ -1,0 +1,49 @@
+{
+  "name": "Administrador",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "criado",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "atualizado",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "ultimoLogin",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "empresa",
+      "otherEntityRelationshipName": "administradores",
+      "relationshipName": "empresas",
+      "otherEntityField": "nome",
+      "ownerSide": false
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "filial",
+      "otherEntityRelationshipName": "administradores",
+      "relationshipName": "filiais",
+      "otherEntityField": "nome",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "administrador",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210407115307"
+}

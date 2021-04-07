@@ -1,0 +1,59 @@
+{
+  "name": "ArquivoImportacao",
+  "fields": [
+    {
+      "fieldName": "urlArquivo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "urlCriticas",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "criado",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "estado",
+      "fieldType": "StatusArquivo",
+      "fieldValues": "ENVIADO,PROCESSANDO,PROCESSADO,PROCESSO_RESSALVA,ERRO"
+    },
+    {
+      "fieldName": "processado",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "administrador",
+      "otherEntityRelationshipName": "arquivoImportacao",
+      "relationshipName": "criador",
+      "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "empresa",
+      "otherEntityRelationshipName": "arquivoImportacao",
+      "relationshipName": "empresa",
+      "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "filial",
+      "otherEntityRelationshipName": "arquivoImportacao",
+      "relationshipName": "filial",
+      "otherEntityField": "nome"
+    }
+  ],
+  "entityTableName": "arquivo_importacao",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210407115303"
+}

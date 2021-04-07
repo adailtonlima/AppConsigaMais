@@ -1,0 +1,134 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-endereco-heading" data-cy="EnderecoCreateUpdateHeading" jhiTranslate="appConsigaMaisApp.endereco.home.createOrEditLabel">
+        Create or edit a Endereco
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.endereco.nome" for="field_nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.endereco.cep" for="field_cep">Cep</label>
+          <input type="text" class="form-control" name="cep" id="field_cep" data-cy="cep" formControlName="cep" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.endereco.logradouro" for="field_logradouro">Logradouro</label>
+          <input
+            type="text"
+            class="form-control"
+            name="logradouro"
+            id="field_logradouro"
+            data-cy="logradouro"
+            formControlName="logradouro"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.endereco.numero" for="field_numero">Numero</label>
+          <input type="text" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.endereco.referencia" for="field_referencia">Referencia</label>
+          <input
+            type="text"
+            class="form-control"
+            name="referencia"
+            id="field_referencia"
+            data-cy="referencia"
+            formControlName="referencia"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.endereco.bairro" for="field_bairro">Bairro</label>
+          <input type="text" class="form-control" name="bairro" id="field_bairro" data-cy="bairro" formControlName="bairro" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.endereco.cidade" for="field_cidade">Cidade</label>
+          <select class="form-control" id="field_cidade" data-cy="cidade" name="cidade" formControlName="cidade">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="cidadeOption.id === editForm.get('cidade')!.value?.id ? editForm.get('cidade')!.value : cidadeOption"
+              *ngFor="let cidadeOption of cidadesSharedCollection; trackBy: trackCidadeById"
+            >
+              {{ cidadeOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.endereco.empresa" for="field_empresa">Empresa</label>
+          <select class="form-control" id="field_empresa" data-cy="empresa" name="empresa" formControlName="empresa">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="empresaOption.id === editForm.get('empresa')!.value?.id ? editForm.get('empresa')!.value : empresaOption"
+              *ngFor="let empresaOption of empresasSharedCollection; trackBy: trackEmpresaById"
+            >
+              {{ empresaOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.endereco.filial" for="field_filial">Filial</label>
+          <select class="form-control" id="field_filial" data-cy="filial" name="filial" formControlName="filial">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="filialOption.id === editForm.get('filial')!.value?.id ? editForm.get('filial')!.value : filialOption"
+              *ngFor="let filialOption of filialsSharedCollection; trackBy: trackFilialById"
+            >
+              {{ filialOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.endereco.funcionario" for="field_funcionario"
+            >Funcionario</label
+          >
+          <select class="form-control" id="field_funcionario" data-cy="funcionario" name="funcionario" formControlName="funcionario">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                funcionarioOption.id === editForm.get('funcionario')!.value?.id ? editForm.get('funcionario')!.value : funcionarioOption
+              "
+              *ngFor="let funcionarioOption of funcionariosSharedCollection; trackBy: trackFuncionarioById"
+            >
+              {{ funcionarioOption.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

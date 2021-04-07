@@ -1,0 +1,12 @@
+{
+  "appConsigaMaisApp": {
+    "StatusArquivo": {
+      "null": "",
+      "ENVIADO": "ENVIADO",
+      "PROCESSANDO": "PROCESSANDO",
+      "PROCESSADO": "PROCESSADO",
+      "PROCESSO_RESSALVA": "PROCESSO_RESSALVA",
+      "ERRO": "ERRO"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="MensalidadePedidoHeading">
+    <span jhiTranslate="appConsigaMaisApp.mensalidadePedido.home.title">Mensalidade Pedidos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="appConsigaMaisApp.mensalidadePedido.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-mensalidade-pedido"
+        [routerLink]="['/mensalidade-pedido/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="appConsigaMaisApp.mensalidadePedido.home.createLabel"> Create a new Mensalidade Pedido </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="mensalidadePedidos?.length === 0">
+    <span jhiTranslate="appConsigaMaisApp.mensalidadePedido.home.notFound">No mensalidadePedidos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="mensalidadePedidos && mensalidadePedidos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nParcela">
+            <span jhiTranslate="appConsigaMaisApp.mensalidadePedido.nParcela">N Parcela</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="valor">
+            <span jhiTranslate="appConsigaMaisApp.mensalidadePedido.valor">Valor</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="criado">
+            <span jhiTranslate="appConsigaMaisApp.mensalidadePedido.criado">Criado</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="valorParcial">
+            <span jhiTranslate="appConsigaMaisApp.mensalidadePedido.valorParcial">Valor Parcial</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pedido.id">
+            <span jhiTranslate="appConsigaMaisApp.mensalidadePedido.pedido">Pedido</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fatura.id">
+            <span jhiTranslate="appConsigaMaisApp.mensalidadePedido.fatura">Fatura</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mensalidadePedido of mensalidadePedidos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/mensalidade-pedido', mensalidadePedido.id, 'view']">{{ mensalidadePedido.id }}</a>
+          </td>
+          <td>{{ mensalidadePedido.nParcela }}</td>
+          <td>{{ mensalidadePedido.valor }}</td>
+          <td>{{ mensalidadePedido.criado | formatMediumDatetime }}</td>
+          <td>{{ mensalidadePedido.valorParcial }}</td>
+          <td>
+            <div *ngIf="mensalidadePedido.pedido">
+              <a [routerLink]="['/pedido', mensalidadePedido.pedido?.id, 'view']">{{ mensalidadePedido.pedido?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="mensalidadePedido.fatura">
+              <a [routerLink]="['/fatura-mensal', mensalidadePedido.fatura?.id, 'view']">{{ mensalidadePedido.fatura?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/mensalidade-pedido', mensalidadePedido.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/mensalidade-pedido', mensalidadePedido.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(mensalidadePedido)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="mensalidadePedidos && mensalidadePedidos.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

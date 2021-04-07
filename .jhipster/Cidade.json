@@ -1,0 +1,29 @@
+{
+  "name": "Cidade",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "estado",
+      "otherEntityRelationshipName": "cidade",
+      "relationshipName": "estado",
+      "otherEntityField": "nome"
+    }
+  ],
+  "entityTableName": "cidade",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210407115301"
+}

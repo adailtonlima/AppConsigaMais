@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity ArquivoImportacao.
+    -->
+    <changeSet id="20210407115303-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="criador_id"
+                                 baseTableName="arquivo_importacao"
+                                 constraintName="fk_arquivo_importacao__criador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="administrador"/>
+
+        <addForeignKeyConstraint baseColumnNames="empresa_id"
+                                 baseTableName="arquivo_importacao"
+                                 constraintName="fk_arquivo_importacao__empresa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="empresa"/>
+
+        <addForeignKeyConstraint baseColumnNames="filial_id"
+                                 baseTableName="arquivo_importacao"
+                                 constraintName="fk_arquivo_importacao__filial_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="filial"/>
+    </changeSet>
+</databaseChangeLog>

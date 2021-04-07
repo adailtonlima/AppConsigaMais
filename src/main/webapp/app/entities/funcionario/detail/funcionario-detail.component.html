@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="funcionario">
+      <h2 data-cy="funcionarioDetailsHeading"><span jhiTranslate="appConsigaMaisApp.funcionario.detail.title">Funcionario</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ funcionario.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.funcionario.nome">Nome</span></dt>
+        <dd>
+          <span>{{ funcionario.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.funcionario.cpf">Cpf</span></dt>
+        <dd>
+          <span>{{ funcionario.cpf }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.funcionario.criado">Criado</span></dt>
+        <dd>
+          <span>{{ funcionario.criado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.funcionario.atualizado">Atualizado</span></dt>
+        <dd>
+          <span>{{ funcionario.atualizado | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="appConsigaMaisApp.funcionario.ultimoLogin">Ultimo Login</span></dt>
+        <dd>
+          <span>{{ funcionario.ultimoLogin | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/funcionario', funcionario.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,17 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "estado": "Estado",
+        "cidade": "Cidade",
+        "endereco": "Endereco",
+        "arquivoImportacao": "Arquivo Importacao",
+        "empresa": "Empresa",
+        "filial": "Filial",
+        "funcionario": "Funcionario",
+        "administrador": "Administrador",
+        "pedido": "Pedido",
+        "mensalidadePedido": "Mensalidade Pedido",
+        "faturaMensal": "Fatura Mensal",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

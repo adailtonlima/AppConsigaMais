@@ -1,0 +1,28 @@
+{
+  "appConsigaMaisApp": {
+    "filial": {
+      "home": {
+        "title": "Filials",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Filial",
+        "createOrEditLabel": "Criar ou editar Filial",
+        "notFound": "Nenhum Filial encontrado"
+      },
+      "created": "Um novo Filial foi criado com o identificador {{ param }}",
+      "updated": "Um Filial foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Filial foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Filial {{ id }}?"
+      },
+      "detail": {
+        "title": "Filial"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "codigo": "Codigo",
+      "cnpj": "Cnpj",
+      "empresa": "Empresa",
+      "administradores": "Administradores"
+    }
+  }
+}

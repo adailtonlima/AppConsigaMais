@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Endereco.
+    -->
+    <changeSet id="20210407115302-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="cidade_id"
+                                 baseTableName="endereco"
+                                 constraintName="fk_endereco__cidade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cidade"/>
+
+        <addForeignKeyConstraint baseColumnNames="empresa_id"
+                                 baseTableName="endereco"
+                                 constraintName="fk_endereco__empresa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="empresa"/>
+
+        <addForeignKeyConstraint baseColumnNames="filial_id"
+                                 baseTableName="endereco"
+                                 constraintName="fk_endereco__filial_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="filial"/>
+
+        <addForeignKeyConstraint baseColumnNames="funcionario_id"
+                                 baseTableName="endereco"
+                                 constraintName="fk_endereco__funcionario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="funcionario"/>
+    </changeSet>
+</databaseChangeLog>

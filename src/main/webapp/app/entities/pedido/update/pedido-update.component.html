@@ -1,0 +1,283 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-pedido-heading" data-cy="PedidoCreateUpdateHeading" jhiTranslate="appConsigaMaisApp.pedido.home.createOrEditLabel">
+        Create or edit a Pedido
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.estado" for="field_estado">Estado</label>
+          <select class="form-control" name="estado" formControlName="estado" id="field_estado" data-cy="estado">
+            <option [ngValue]="null">{{ 'appConsigaMaisApp.StatusPedido.null' | translate }}</option>
+            <option value="PENDENTE">{{ 'appConsigaMaisApp.StatusPedido.PENDENTE' | translate }}</option>
+            <option value="APROVADO">{{ 'appConsigaMaisApp.StatusPedido.APROVADO' | translate }}</option>
+            <option value="PARC_APROVADO">{{ 'appConsigaMaisApp.StatusPedido.PARC_APROVADO' | translate }}</option>
+            <option value="REPROVADO">{{ 'appConsigaMaisApp.StatusPedido.REPROVADO' | translate }}</option>
+            <option value="EXPIRADO">{{ 'appConsigaMaisApp.StatusPedido.EXPIRADO' | translate }}</option>
+            <option value="CANCELADO">{{ 'appConsigaMaisApp.StatusPedido.CANCELADO' | translate }}</option>
+            <option value="ESTORNADO">{{ 'appConsigaMaisApp.StatusPedido.ESTORNADO' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.criado" for="field_criado">Criado</label>
+          <div class="d-flex">
+            <input
+              id="field_criado"
+              data-cy="criado"
+              type="datetime-local"
+              class="form-control"
+              name="criado"
+              formControlName="criado"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.dataAprovacao" for="field_dataAprovacao"
+            >Data Aprovacao</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dataAprovacao"
+              data-cy="dataAprovacao"
+              type="datetime-local"
+              class="form-control"
+              name="dataAprovacao"
+              formControlName="dataAprovacao"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.dataExpiracao" for="field_dataExpiracao"
+            >Data Expiracao</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dataExpiracao"
+              data-cy="dataExpiracao"
+              type="text"
+              class="form-control"
+              name="dataExpiracao"
+              ngbDatepicker
+              #dataExpiracaoDp="ngbDatepicker"
+              formControlName="dataExpiracao"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dataExpiracaoDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.renda" for="field_renda">Renda</label>
+          <input type="number" class="form-control" name="renda" id="field_renda" data-cy="renda" formControlName="renda" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.valorSolicitado" for="field_valorSolicitado"
+            >Valor Solicitado</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorSolicitado"
+            id="field_valorSolicitado"
+            data-cy="valorSolicitado"
+            formControlName="valorSolicitado"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.qtParcelasSolicitado" for="field_qtParcelasSolicitado"
+            >Qt Parcelas Solicitado</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="qtParcelasSolicitado"
+            id="field_qtParcelasSolicitado"
+            data-cy="qtParcelasSolicitado"
+            formControlName="qtParcelasSolicitado"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.valorAprovado" for="field_valorAprovado"
+            >Valor Aprovado</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorAprovado"
+            id="field_valorAprovado"
+            data-cy="valorAprovado"
+            formControlName="valorAprovado"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.valorParcelaAprovado" for="field_valorParcelaAprovado"
+            >Valor Parcela Aprovado</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorParcelaAprovado"
+            id="field_valorParcelaAprovado"
+            data-cy="valorParcelaAprovado"
+            formControlName="valorParcelaAprovado"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.qtParcelasAprovado" for="field_qtParcelasAprovado"
+            >Qt Parcelas Aprovado</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="qtParcelasAprovado"
+            id="field_qtParcelasAprovado"
+            data-cy="qtParcelasAprovado"
+            formControlName="qtParcelasAprovado"
+          />
+        </div>
+
+        <div class="form-group">
+          <label
+            class="form-control-label"
+            jhiTranslate="appConsigaMaisApp.pedido.dataPrimeiroVencimento"
+            for="field_dataPrimeiroVencimento"
+            >Data Primeiro Vencimento</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dataPrimeiroVencimento"
+              data-cy="dataPrimeiroVencimento"
+              type="text"
+              class="form-control"
+              name="dataPrimeiroVencimento"
+              ngbDatepicker
+              #dataPrimeiroVencimentoDp="ngbDatepicker"
+              formControlName="dataPrimeiroVencimento"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dataPrimeiroVencimentoDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.dataUltimoVencimento" for="field_dataUltimoVencimento"
+            >Data Ultimo Vencimento</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dataUltimoVencimento"
+              data-cy="dataUltimoVencimento"
+              type="text"
+              class="form-control"
+              name="dataUltimoVencimento"
+              ngbDatepicker
+              #dataUltimoVencimentoDp="ngbDatepicker"
+              formControlName="dataUltimoVencimento"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="dataUltimoVencimentoDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.funcionario" for="field_funcionario">Funcionario</label>
+          <select class="form-control" id="field_funcionario" data-cy="funcionario" name="funcionario" formControlName="funcionario">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                funcionarioOption.id === editForm.get('funcionario')!.value?.id ? editForm.get('funcionario')!.value : funcionarioOption
+              "
+              *ngFor="let funcionarioOption of funcionariosSharedCollection; trackBy: trackFuncionarioById"
+            >
+              {{ funcionarioOption.cpf }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.empresa" for="field_empresa">Empresa</label>
+          <select class="form-control" id="field_empresa" data-cy="empresa" name="empresa" formControlName="empresa">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="empresaOption.id === editForm.get('empresa')!.value?.id ? editForm.get('empresa')!.value : empresaOption"
+              *ngFor="let empresaOption of empresasSharedCollection; trackBy: trackEmpresaById"
+            >
+              {{ empresaOption.cpf }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.filia" for="field_filia">Filia</label>
+          <select class="form-control" id="field_filia" data-cy="filia" name="filia" formControlName="filia">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="filialOption.id === editForm.get('filia')!.value?.id ? editForm.get('filia')!.value : filialOption"
+              *ngFor="let filialOption of filialsSharedCollection; trackBy: trackFilialById"
+            >
+              {{ filialOption.cpf }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="appConsigaMaisApp.pedido.quemAprovou" for="field_quemAprovou">Quem Aprovou</label>
+          <select class="form-control" id="field_quemAprovou" data-cy="quemAprovou" name="quemAprovou" formControlName="quemAprovou">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                administradorOption.id === editForm.get('quemAprovou')!.value?.id ? editForm.get('quemAprovou')!.value : administradorOption
+              "
+              *ngFor="let administradorOption of administradorsSharedCollection; trackBy: trackAdministradorById"
+            >
+              {{ administradorOption.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
