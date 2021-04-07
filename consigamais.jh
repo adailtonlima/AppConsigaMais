@@ -1,0 +1,150 @@
+
+entity Estado{
+	nome String required    
+}
+
+entity Cidade{
+	nome String required
+}
+
+relationship ManyToOne{
+	Cidade{estado(nome)} to Estado
+}
+entity Endereco{
+	nome String
+    cep String
+    logradouro String
+    numero String
+    referencia String
+    bairro String
+    //cidade
+}
+relationship ManyToOne{
+	Endereco{cidade(nome)} to Cidade
+	Cidade{estado(nome)} to Estado
+	Endereco{empresa(nome)} to Empresa
+    Endereco{filial(nome)} to Filial
+    Endereco{funcionario(nome)} to Funcionario
+	Filial{empresa(nome)} to Empresa
+}
+
+enum StatusArquivo {
+	ENVIADO, PROCESSANDO, PROCESSADO, PROCESSO_RESSALVA, ERRO
+}
+entity ArquivoImportacao{
+
+	urlArquivo String
+    urlCriticas String
+	criado ZonedDateTime
+    estado StatusArquivo
+    processado ZonedDateTime
+    // usuario envio    
+}
+
+relationship ManyToOne{
+	ArquivoImportacao{criador(nome)} to Administrador
+	ArquivoImportacao{empresa(nome)} to Empresa
+    ArquivoImportacao{filial(nome)} to Filial
+}
+//Empregador
+entity Empresa {
+	nome String required
+	cnpj String
+    razaoSocial String
+    
+	// cidade
+}
+
+entity Filial{
+	nome String
+    codigo String
+    cnpj String
+
+}
+
+relationship ManyToMany {
+	Empresa{administradores(nome)} to Administrador{empresas(nome)}
+    Filial{administradores(nome)} to Administrador{filiais(nome)}
+
+}
+entity Funcionario {
+	nome String required
+    cpf String required
+	criado ZonedDateTime
+    atualizado ZonedDateTime
+    ultimoLogin ZonedDateTime
+}
+
+entity Administrador {
+	nome String
+	criado ZonedDateTime
+    atualizado ZonedDateTime
+    ultimoLogin ZonedDateTime
+}
+
+enum StatusPedido{
+PENDENTE, APROVADO, PARC_APROVADO, REPROVADO, EXPIRADO, CANCELADO, ESTORNADO
+}
+
+entity Pedido {
+	estado StatusPedido
+    criado ZonedDateTime
+    dataAprovacao ZonedDateTime
+    dataExpiracao LocalDate
+    renda Double
+    valorSolicitado Double
+    qtParcelasSolicitado Integer
+    valorAprovado Double
+    valorParcelaAprovado Double    
+    qtParcelasAprovado Integer
+    dataPrimeiroVencimento LocalDate
+    dataUltimoVencimento LocalDate
+    //quem aprovou
+    //funcionario alvo
+    //empresa
+    //filial
+}
+
+entity MensalidadePedido{
+	
+    nParcela Integer
+    valor Double
+	criado ZonedDateTime 
+    valorParcial Double
+    
+	//empresa
+    //filial
+}
+
+relationship ManyToOne {
+	
+    MensalidadePedido{pedido} to Pedido
+    MensalidadePedido{fatura} to FaturaMensal
+    FaturaMensal{empresa(nome)} to Empresa
+    FaturaMensal{filial(nome)} to Filial
+    
+}
+entity FaturaMensal {
+
+	mes LocalDate
+    criado ZonedDateTime
+    boletoUrl String
+    dataPago ZonedDateTime
+    
+    
+}
+
+
+relationship ManyToOne {
+	Pedido{funcionario(cpf)} to Funcionario
+    Pedido{empresa(cpf)} to Empresa
+    Pedido{filia(cpf)} to Filial
+    Pedido{quemAprovou(nome)} to Administrador
+	
+}
+  
+// Set pagination options
+paginate * with pagination
+dto * with mapstruct
+service all with serviceImpl
+filter *
